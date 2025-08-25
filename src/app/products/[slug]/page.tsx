@@ -46,9 +46,6 @@ export default function ProductDetailPage() {
   const { getProductReviews, getProductStats, markHelpful } = useReviewStore()
   const { addProduct } = useRecentViewStore()
   
-  const reviews = getProductReviews(product.slug)
-  const reviewStats = getProductStats(product.slug)
-  
   // 상품 페이지 접속 시 최근 본 상품에 추가
   useEffect(() => {
     if (product) {
@@ -67,6 +64,9 @@ export default function ProductDetailPage() {
     )
   }
 
+  const reviews = getProductReviews(product.slug)
+  const reviewStats = getProductStats(product.slug)
+  
   const discountPercentage = product.sale_price
     ? Math.round(((product.price - product.sale_price) / product.price) * 100)
     : 0
