@@ -24,7 +24,7 @@ interface CouponStore {
   applyPoints: (amount: number, orderTotal: number) => boolean
   removePoints: () => void
   earnPoints: (amount: number, description: string, orderId?: string) => void
-  usePoints: (amount: number, description: string, orderId?: string) => void
+  spendPoints: (amount: number, description: string, orderId?: string) => void
   getPointsBalance: () => number
 }
 
@@ -201,7 +201,7 @@ export const useCouponStore = create<CouponStore>()(
         }))
       },
 
-      usePoints: (amount, description, orderId) => {
+      spendPoints: (amount, description, orderId) => {
         const history: PointHistory = {
           id: Date.now().toString(),
           userId: '1',

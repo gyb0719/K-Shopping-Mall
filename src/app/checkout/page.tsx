@@ -40,7 +40,7 @@ export default function CheckoutPage() {
     removePoints,
     appliedPoints,
     userPoints,
-    usePoints,
+    spendPoints,
     earnPoints
   } = useCouponStore()
   
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
       // 포인트 사용 처리
       const orderId = `ORDER-${Date.now()}`
       if (appliedPoints > 0) {
-        usePoints(appliedPoints, '상품 구매', orderId)
+        spendPoints(appliedPoints, '상품 구매', orderId)
       }
       
       // 포인트 적립 (결제 금액의 1%)
