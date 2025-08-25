@@ -107,14 +107,15 @@ export default function CheckoutPage() {
       await new Promise(resolve => setTimeout(resolve, 2000))
       
       // 포인트 사용 처리
+      const orderId = `ORDER-${Date.now()}`
       if (appliedPoints > 0) {
-        usePoints(appliedPoints, '상품 구매', `ORDER-${Date.now()}`)
+        usePoints(appliedPoints, '상품 구매', orderId)
       }
       
       // 포인트 적립 (결제 금액의 1%)
       const earnedPoints = Math.floor(total * 0.01)
       if (earnedPoints > 0) {
-        earnPoints(earnedPoints, '구매 적립', `ORDER-${Date.now()}`)
+        earnPoints(earnedPoints, '구매 적립', orderId)
       }
       
       // 주문 성공
