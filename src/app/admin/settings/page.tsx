@@ -173,17 +173,17 @@ export default function SettingsPage() {
                     <label className="flex items-center gap-3">
                       <input type="checkbox" defaultChecked className="rounded" />
                       <span>신용/체크카드</span>
-                      <Badge variant="success">활성</Badge>
+                      <Badge variant="default">활성</Badge>
                     </label>
                     <label className="flex items-center gap-3">
                       <input type="checkbox" defaultChecked className="rounded" />
                       <span>카카오페이</span>
-                      <Badge variant="success">활성</Badge>
+                      <Badge variant="default">활성</Badge>
                     </label>
                     <label className="flex items-center gap-3">
                       <input type="checkbox" defaultChecked className="rounded" />
                       <span>네이버페이</span>
-                      <Badge variant="success">활성</Badge>
+                      <Badge variant="default">활성</Badge>
                     </label>
                     <label className="flex items-center gap-3">
                       <input type="checkbox" className="rounded" />

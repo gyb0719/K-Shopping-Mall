@@ -92,7 +92,7 @@ export default function UsersPage() {
 
   const getStatusBadgeVariant = (status: string) => {
     switch(status) {
-      case 'active': return 'success'
+      case 'active': return 'default'
       case 'inactive': return 'secondary'
       case 'blocked': return 'destructive'
       default: return 'outline'

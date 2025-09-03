@@ -50,7 +50,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
           id: '1',
           email: email,
           name: '테스트 사용자',
-          role: 'customer',
+          role: 'customer' as const,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         }
@@ -62,7 +62,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
           id: '2',
           email: email,
           name: '관리자',
-          role: 'admin',
+          role: 'admin' as const,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         }
@@ -88,7 +88,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         id: Date.now().toString(),
         email: email,
         name: name || email.split('@')[0],
-        role: 'customer',
+        role: 'customer' as const,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       }
