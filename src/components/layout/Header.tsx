@@ -33,7 +33,7 @@ export function Header() {
   const [mounted, setMounted] = useState(false)
   
   const { items, getTotalItems, setIsOpen: setCartOpen } = useCartStore()
-  const { user, signOut } = useAuthStore()
+  const { user, signOut, initializeAuth } = useAuthStore()
   const { items: wishlistItems } = useWishlistStore()
   const { theme, setTheme } = useTheme()
   
@@ -41,6 +41,7 @@ export function Header() {
 
   useEffect(() => {
     setMounted(true)
+    initializeAuth() // localStorage에서 user 정보 복원
   }, [])
 
   const categories = [
@@ -77,7 +78,7 @@ export function Header() {
                   {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                 </button>
               )}
-              <Link href="/help" className="hover:text-primary transition-colors">
+              <Link href="/support" className="hover:text-primary transition-colors">
                 고객센터
               </Link>
             </div>
@@ -172,7 +173,7 @@ export function Header() {
                 className="flex items-center gap-2 p-2 hover:bg-accent rounded-md transition-colors"
               >
                 <User className="h-5 w-5" />
-                {user && <ChevronDown className="h-3 w-3" />}
+                {mounted && <ChevronDown className={`h-3 w-3 transition-opacity ${user ? 'opacity-100' : 'opacity-0'}`} />}
               </button>
 
               <AnimatePresence>
@@ -190,14 +191,14 @@ export function Header() {
                           <p className="text-xs text-muted-foreground">{user.email}</p>
                         </div>
                         <Link
-                          href="/account"
+                          href="/mypage"
                           className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-accent transition-colors"
                         >
                           <User className="h-4 w-4" />
-                          내 계정
+                          마이페이지
                         </Link>
                         <Link
-                          href="/orders"
+                          href="/mypage/orders"
                           className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-accent transition-colors"
                         >
                           <Package className="h-4 w-4" />
