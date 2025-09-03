@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Order, OrderStatus } from '@/types'
 
 // 메모리 저장소
-let orders: Order[] = []
+const orders: Order[] = []
 
 // GET /api/orders - 주문 목록 조회
 export async function GET(request: NextRequest) {

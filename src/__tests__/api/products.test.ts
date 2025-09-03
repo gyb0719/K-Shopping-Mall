@@ -23,7 +23,7 @@ describe('/api/products', () => {
       const data = await response.json()
 
       expect(response.status).toBe(200)
-      data.products.forEach((product: any) => {
+      data.products.forEach((product: { category: { slug: string } }) => {
         expect(product.category.slug).toBe('clothing')
       })
     })
@@ -35,7 +35,7 @@ describe('/api/products', () => {
       const data = await response.json()
 
       expect(response.status).toBe(200)
-      data.products.forEach((product: any) => {
+      data.products.forEach((product: { name: string; description: string }) => {
         const nameMatch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
         const descMatch = product.description.toLowerCase().includes(searchTerm.toLowerCase())
         expect(nameMatch || descMatch).toBe(true)

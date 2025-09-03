@@ -3,14 +3,15 @@ import { sampleProducts } from '@/data/sampleProducts'
 import { Product } from '@/types'
 
 // 메모리 저장소
-let products: Product[] = [...sampleProducts]
+const products: Product[] = [...sampleProducts]
 
 // GET /api/products/[id] - 상품 상세 조회
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const product = products.find(p => p.id === params.id)
+  const { id } = await params
+  const product = products.find(p => p.id === id)
   
   if (!product) {
     return NextResponse.json(
@@ -25,11 +26,12 @@ export async function GET(
 // PUT /api/products/[id] - 상품 수정
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
-    const productIndex = products.findIndex(p => p.id === params.id)
+    const productIndex = products.findIndex(p => p.id === id)
     
     if (productIndex === -1) {
       return NextResponse.json(
@@ -58,9 +60,10 @@ export async function PUT(
 // DELETE /api/products/[id] - 상품 삭제
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const productIndex = products.findIndex(p => p.id === params.id)
+  const { id } = await params
+  const productIndex = products.findIndex(p => p.id === id)
   
   if (productIndex === -1) {
     return NextResponse.json(

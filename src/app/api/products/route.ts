@@ -3,7 +3,7 @@ import { sampleProducts } from '@/data/sampleProducts'
 import { Product } from '@/types'
 
 // 메모리 저장소 (실제 앱에서는 DB 사용)
-let products: Product[] = [...sampleProducts]
+const products: Product[] = [...sampleProducts]
 
 // GET /api/products - 상품 목록 조회
 export async function GET(request: NextRequest) {

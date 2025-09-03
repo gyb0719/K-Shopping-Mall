@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Order, OrderStatus } from '@/types'
 
 // 메모리 저장소
-let orders: Order[] = []
+const orders: Order[] = []
 
 // GET /api/orders/[id] - 주문 상세 조회
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const order = orders.find(o => o.id === params.id)
+  const { id } = await params
+  const order = orders.find(o => o.id === id)
   
   if (!order) {
     return NextResponse.json(
@@ -24,11 +25,12 @@ export async function GET(
 // PUT /api/orders/[id] - 주문 상태 변경
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
-    const orderIndex = orders.findIndex(o => o.id === params.id)
+    const orderIndex = orders.findIndex(o => o.id === id)
     
     if (orderIndex === -1) {
       return NextResponse.json(
